@@ -28,6 +28,6 @@ app.use("/", routes);
 app.use("/update", routes);
 app.use("/create", routes);
 
-app.listen(port, function(){
+app.listen(PORT, function(){
   console.log("We are listening on PORT: ", PORT);
 });

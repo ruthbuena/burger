@@ -1,52 +1,64 @@
 <h1>EAT DA BURGER!</h1>
 
-<h2>Nom Nom Nom!</h2>
+
+<div class="col-md-8 col-md-offset-1">
+<h2>Come and Get It!</h2>
 
 <ul>
   {{#each burgers}}
   {{#unless this.devoured}}
     <li>
       <img src"../img/burger.jpg" width="50px">
+      <p>
       {{this.burger_name}}
-
+    </p>
       <form action="/{{this.id}}?_method=PUT" method="POST">
         <input type="hidden" name="devoured" value="true">
-        <button type="submit">Sorry, all gone!!</button>
+        <button type="submit"class="btn btn-default" style="background-color: black">Help Yourself!!</button>
       </form>
-
-      {{> burgers/delete-burger}}
     </li>
+      <!-- {{> burgers/delete-burger}} -->
   {{/unless}}
   {{/each}}
 </ul>
+</div>
 
-<h2>Come and Get It!</h2>
+
+<div class="col-md-4" id="eaten">
+  <br><br><br>
+<h2>NOM NOM NOM!</h2>
 
 <ul>
   {{#each burgers}}
   {{#if this.devoured}}
     <li>
+      <p>
       {{this.burger_name}}
-
+    </p>
+  </li>
       <form action="/{{this.id}}?_method=PUT" method="POST">
         <input type="hidden" name="devoured" value="false">
-        <button type="submit">Help Yourself!!</button>
       </form>
 
-      {{> burgers/delete-burger}}
-    </li>
+      <!-- {{> burgers/delete-burger}} -->
   {{/if}}
   {{/each}}
 </ul>
+</div>
 
-<h2>Add a Burger</h2>
+<div class="row">
+  <div class="col-md-2"></div>
+<div class="col-md-4" id="update">
+  <br><br><br>
 <form class="create-update-form" action="/" method="POST">
+<h2>Add a Burger</h2>
 
     <div class="form-group">
-      <label for="bu">Burger Name:</label>
-      <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-      <input type="radio" name="sleepy" value="0"> Available
-    </div>
+      <label for="addBurger">Burger Name:</label>
+      <input type="hidden" name="devoured" value="0">
+      <input type="text" id="addBurger" name="burger_name">
+    <button type="submit" class="btn btn-default" style="background-color: black">Add a Burger</button>
+  </div>
 
-    <button type="submit">Add a Burger</button>
 </form>
+</div>
