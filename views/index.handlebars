@@ -1,16 +1,17 @@
 <h1>EAT DA BURGER!</h1>
 
-<h2>Come and Get It!</h2>
+<h2>Nom Nom Nom!</h2>
 
 <ul>
   {{#each burgers}}
   {{#unless this.devoured}}
     <li>
-      {{this.name}}
+      <img src"../img/burger.jpg" width="50px">
+      {{this.burger_name}}
 
       <form action="/{{this.id}}?_method=PUT" method="POST">
-        <input type="hidden" name="devoured" value="false">
-        <button type="submit">Help Yourself!!</button>
+        <input type="hidden" name="devoured" value="true">
+        <button type="submit">Sorry, all gone!!</button>
       </form>
 
       {{> burgers/delete-burger}}
@@ -19,17 +20,17 @@
   {{/each}}
 </ul>
 
-<h2>Nom Nom Nom!</h2>
+<h2>Come and Get It!</h2>
 
 <ul>
   {{#each burgers}}
   {{#if this.devoured}}
     <li>
-      {{this.name}}
+      {{this.burger_name}}
 
       <form action="/{{this.id}}?_method=PUT" method="POST">
-        <input type="hidden" name="devoured" value="true">
-        <button type="submit">Sorry, ALL GONE!!</button>
+        <input type="hidden" name="devoured" value="false">
+        <button type="submit">Help Yourself!!</button>
       </form>
 
       {{> burgers/delete-burger}}

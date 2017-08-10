@@ -1,0 +1,30 @@
+body {
+  width: 100%;
+  color: #fff;
+  background-image: url("https://pixel.nymag.com/imgs/daily/grub/2014/07/07/07-in-and-out-burger.w710.h473.2x.jpg");
+}
+
+li {
+  padding: 5px;
+  margin: 5px;
+  background: #3915c6;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.create-update-form {
+  padding: 5px;
+  margin: 5px;
+  background: #efeb0e;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #000;
+  color: #fc9c1e;
+}
