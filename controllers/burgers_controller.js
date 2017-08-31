@@ -16,7 +16,7 @@ router.get("/", function(req,res){
 
 router.get('/index', function (req, res) {
 
-  models.burgers.showAll({
+  models.burgers.findAll({
     include: [{model: models.devoured}]
   }).then(function(data){
 
@@ -27,7 +27,7 @@ router.get('/index', function (req, res) {
 });
 
 router.post("/burger/create", function(req,res){
-  models.burgers.insertBurger(
+  models.burgers.create(
     {
       burger_name: req.body.burger_name,
       devoured: false

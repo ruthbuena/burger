@@ -11,7 +11,6 @@ module.exports = {
       devoured_name: {
         type: Sequelize.STRING
       },
-      // Foreign key usage (added manually)
       burgerId: {
           type: Sequelize.INTEGER,
           references: {
@@ -32,6 +31,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('devourers');
+    return queryInterface.dropTable('devoured');
   }
 };

@@ -5,12 +5,6 @@ module.exports = function(sequelize, DataTypes) {
     burger_name: DataTypes.STRING,
     devoured: DataTypes.BOOLEAN,
     devourerId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        burgers.hasOne(models.devourers)
-      }
-    }
-  });
+});
   return burgers;
 };
