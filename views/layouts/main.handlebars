@@ -2,10 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
     <title>Eat Da Burger</title>
+    <link rel="icon" href="/public/assets/img/heaven.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/burger_style.css" type="text/css">
   </head>
   <body>
+
+  <div class="container">
+  <br>
+
+  <center>
+    <h1 class="middle_top">Eat Da Burger!</h1>
+  </center>
+
+  <br>
+
+  <center>
+    <div class="row">
+      <img src="/assets/img/burger.jpg" width="320" height="320">
+    </div>
+  </center>
+
+
+
+  <br>
+
     {{{ body }}}
+
+  <br>
+
+  <form action="burger/create" method="POST">
+         <div class="row">
+           <div class="col-md-3"></div>
+
+           <div class="form-group col-md-6">
+             <center><label for="new_burger" class="middle_top">Create a New Burger!</label></center>
+             <textarea class="form-control" columns="2" rows="1" id="new_burger" name="burger_name"></textarea>
+           </div>
+
+           <div class="col-md-3"></div>
+         </div>
+
+         <center>
+           <button id="submit-button" type="submit" style="background-color: #ff0000" class="btn btn-danger">Add New Burger</button>
+         </center>
+       </form>
+       <br>
+     </div>
+
+<!-- jQuery link -->
+     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
   </body>
 </html>
