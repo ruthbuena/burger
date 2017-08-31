@@ -1,5 +1,5 @@
 // Import(require) connection file into this file
-var connection = require ("../config/connection.js");
+var connection = require ("./connection.js");
 
 // Connect to MySQL database
 connection.connect(function(err) {
@@ -74,4 +74,3 @@ var orm = {
 
 // Export the ORM
 module.exports = orm;
-
