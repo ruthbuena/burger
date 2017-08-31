@@ -23,17 +23,8 @@ router.get('/index', function (req, res) {
   });
 
   models.burgers.findAll({
-<<<<<<< HEAD
     include: [{model: models.devourer}]
   }).then(function(data){
-=======
-    include: [{
-      model: models.devoured,
-      as:"burgers"
-    }]
-  })
-  .then(function(data){
->>>>>>> 60cc8d43ebe1b4d76634e38afeb72d1f7be3e8a3
 
       var hbsObject = { burgers: data };
 
@@ -66,15 +57,9 @@ router.post("/burger/update/:id", function (req,res){
 
     models.burgers.findOne({ where: {id: req.params.id } } )
 
-<<<<<<< HEAD
     .then(function(eatenBurger){
       eatenBurger.update({
         devourer: true,
-=======
-    .then(function(eatBurger){
-      eatBurger.update({
-        devoured: true,
->>>>>>> 60cc8d43ebe1b4d76634e38afeb72d1f7be3e8a3
       })
 
       .then(function(){
