@@ -17,7 +17,7 @@ router.get("/", function(req,res){
 router.get('/index', function (req, res) {
 
   models.burgers.findAll({
-    include: [{model: models.devoured}]
+    include: [{model: models.devourer}]
   }).then(function(data){
 
       var hbsObject = { burgers: data };
@@ -30,7 +30,7 @@ router.post("/burger/create", function(req,res){
   models.burgers.create(
     {
       burger_name: req.body.burger_name,
-      devoured: false
+      devourer: false
     }
   ).then(function(){
     res.redirect("/index");
@@ -42,8 +42,8 @@ router.post("/burger/update/:id", function (req,res){
     req.body.burgerEat = "John Doe";
   }
 
-  models.devoured.create({
-    devoured_name: req.body.burgerEat,
+  models.devourer.create({
+    devourer_name: req.body.burgerEat,
     burgerId: req.params.id
   })
 
@@ -53,7 +53,7 @@ router.post("/burger/update/:id", function (req,res){
 
     .then(function(eatenBurger){
       eatenBurger.update({
-        devoured: true,
+        devourer: true,
       })
 
       .then(function(){

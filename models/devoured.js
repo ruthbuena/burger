@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var devoured = sequelize.define('devoured', {
-    devoured_name: DataTypes.STRING,
+  var devourer = sequelize.define('devourer', {
+    devourer_name: DataTypes.STRING,
     burgerId: DataTypes.INTEGER
 });
-  return devoured;
+  return devourer;
 };
