@@ -8,34 +8,26 @@ var burger = require("../models/burger.js");
 
 // Routes for the DB all,create and update methods
 router.get("/", function(req,res){
-  burger.all(function(data){
-    var hbsObject = {
-      burgers: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
+    res.redirect("/index");
+  });
+
+router.get('/index', function (req, res) {
+  burger.showAll(function(data) {
+    var hbsObject = { burgers: data };
+    //console.log(hbsObject);
+    res.render('index', hbsObject);
   });
 });
 
-router.post("/burgers/create", function(req,res){
-  burgers.create([
-    "burger_name","devoured"
-  ], [
-    req.body.burger_name, req.body.devoured
-  ], function(){
-    res.redirect("/");
+router.post("/burger/create", function(req,res){
+  burger.insertBurger(req.body.burger_name, function(){
+    res.redirect("/index");
   });
 });
 
-router.put("/burgers/update/:id", function (req,res){
-  var condition = "id = " + req.params.id;
-
-  console.log("condition", condition);
-
-  burger.update({
-    devoured: req.body.devoured
-  }, condition, function(){
-    res.redirect("/");
+router.post("/burger/update/:id", function (req,res){
+  burger.updateBurger(req.params.id, function() {
+    res.redirect("/index");
   });
 });
 
