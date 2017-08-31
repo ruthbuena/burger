@@ -47,12 +47,12 @@ router.post("/burger/update/:id", function (req,res){
     burgerId: req.params.id
   })
 
-  .then(function(newEater){
+  .then(function(newUser){
 
     models.burgers.findOne({ where: {id: req.params.id } } )
 
-    .then(function(eatenBurger){
-      eatenBurger.update({
+    .then(function(eatBurger){
+      eatBurger.update({
         devoured: true,
       })
 

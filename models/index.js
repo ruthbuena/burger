@@ -22,6 +22,12 @@ fs
   .forEach(function(file) {
     var model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
+
+    models.devoured.belongsToMany(models.devoured, {
+      as:'networks',
+      foreignKey:"burgerId",
+      through: models.devoured
+    });
   });
 
 Object.keys(db).forEach(function(modelName) {
