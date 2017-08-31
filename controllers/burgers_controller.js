@@ -16,9 +16,19 @@ router.get("/", function(req,res){
 
 router.get('/index', function (req, res) {
 
+  models.devoured.belongsToMany(models.devoured, {
+    as:'networks',
+    foreignKey:"burgerId",
+    through: models.burgers
+  });
+
   models.burgers.findAll({
-    include: [{model: models.devoured}]
-  }).then(function(data){
+    include: [{
+      model: models.devoured,
+      as:"burgers"
+    }]
+  })
+  .then(function(data){
 
       var hbsObject = { burgers: data };
 
