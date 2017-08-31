@@ -1,26 +1,16 @@
-// Import the ORM functions
-var orm = require("../config/orm.js");
+'use strict';
 
-var burger = {
-  showAll: function(callback) {
-    orm.showAll(function(res){
-      callback(res);
-    });
-  },
-
-  insertBurger: function(burger_name, callback) {
-    orm.insertBurger(burger_name, function(res){
-      callback(res);
-    });
-  },
-
-  updateBurger: function(burger_id, callback) {
-    orm.updateBurger(burger_id, function(res){
-      callback(res);
-    });
-  }
-
+module.exports = function(sequelize, DataTypes) {
+  var burgers = sequelize.define('burgers', {
+    burger_name: DataTypes.STRING,
+    devoured: DataTypes.BOOLEAN,
+    devourerId: DataTypes.INTEGER
+  }, {
+    classMethods: {
+      associate: function(models) {
+        burgers.hasOne(models.devourers)
+      }
+    }
+  });
+  return burgers;
 };
-
-// Export the DB methods
-module.exports = burger;

@@ -5,8 +5,7 @@ var methodOverride = require ("method-override");
 
 var app = express();
 
-// Per documentation the below command is needed when connecting using Heroku
-var PORT = process.env.PORT || 3000;
+
 
 // Info used to connect to public folder
 app.use(express.static(__dirname + "/public"));
@@ -22,12 +21,12 @@ var exphbs = require ("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgers_controller.js");
+var router = require("./controllers/burgers_controller.js");
 
-app.use("/", routes);
-app.use("/update", routes);
-app.use("/create", routes);
+app.use("/", router);
 
+// Per documentation the below command is needed when connecting using Heroku
+var PORT = process.env.PORT || 3000;
 app.listen(PORT, function(){
   console.log("We are listening on PORT: ", PORT);
 });

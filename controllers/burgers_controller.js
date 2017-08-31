@@ -3,8 +3,11 @@ var express = require("express");
 // Create the router for the App
 var router = express.Router();
 
-// Import the model (burger.js) to use its DB methods
-var burger = require("../models/burger.js");
+var models=require("../models");
+
+var sequelizeConnection = models.sequelize;
+
+sequelizeConnection.sync();
 
 // Routes for the DB all,create and update methods
 router.get("/", function(req,res){
@@ -12,22 +15,51 @@ router.get("/", function(req,res){
   });
 
 router.get('/index', function (req, res) {
-  burger.showAll(function(data) {
-    var hbsObject = { burgers: data };
-    //console.log(hbsObject);
+
+  models.burgers.showAll({
+    include: [{model: models.devoured}]
+    .then(function(data){
+
+      var hbsObject = { burgers: data };
+
     res.render('index', hbsObject);
-  });
+  })
 });
 
 router.post("/burger/create", function(req,res){
-  burger.insertBurger(req.body.burger_name, function(){
+  models.burgers.insertBurger(
+    {
+      burger_name: req.body.burger_name,
+      devoured: false
+    }
+  ).then(function(){
     res.redirect("/index");
   });
 });
 
 router.post("/burger/update/:id", function (req,res){
-  burger.updateBurger(req.params.id, function() {
-    res.redirect("/index");
+  if(req.body.burgerEat == "" || req.body.burgerEat == null){
+    req.body.burgerEat = "John Doe";
+  }
+
+  models.devoured.create({
+    devoured_name: req.body.burgerEat,
+    burgerId: req.params.id
+  })
+
+  .then(function(newEater){
+
+    models.burgers.findOne({ where: {id: req.params.id } } )
+
+    .then(function(eatenBurger){
+      eatenBurger.update({
+        devoured: true,
+      })
+
+      .then(function(){
+        res.redirect('/index');
+      });
+    });
   });
 });
 
