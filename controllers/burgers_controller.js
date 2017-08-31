@@ -18,7 +18,7 @@ router.get('/index', function (req, res) {
 
   models.burgers.showAll({
     include: [{model: models.devoured}]
-    .then(function(data){
+  }).then(function(data){
 
       var hbsObject = { burgers: data };
 
