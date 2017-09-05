@@ -26,7 +26,7 @@ router.get('/index', function (req, res) {
   })
 });
 
-router.post("/burgers/create", function(req,res){
+router.post("/burger/create", function(req,res){
   models.burgers.create(
     {
       burger_name: req.body.burger_name,
@@ -37,7 +37,7 @@ router.post("/burgers/create", function(req,res){
   });
 });
 
-router.post("/burgers/update/:id", function (req,res){
+router.post("/burger/update/:id", function (req,res){
   if(req.body.burgerEat == "" || req.body.burgerEat == null){
     req.body.burgerEat = "John Doe";
   }
@@ -47,7 +47,7 @@ router.post("/burgers/update/:id", function (req,res){
     burgerId: req.params.id
   })
 
-  .then(function(newUser){
+  .then(function(newDevourer){
 
     models.burgers.findOne({ where: {id: req.params.id } } )
 
