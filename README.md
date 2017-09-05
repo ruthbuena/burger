@@ -5,7 +5,7 @@ An application that allows users to create, log and devour custom made burgers u
 The final application has been deployed through Heroku and can be accessed with the following link: https://aqueous-bastion-39124.herokuapp.com/
 
 Below is a screenshot of the application's UI on a desktop:
-![Desktop pic](public/assets/img/desktop.png)
+![Desktop pic](sequelizedDesktop.png)
 
 Below is a screenshot of the application's UI on a mobile device:
-![Mobile pic](public/assets/img/mobile.png)
+![Mobile pic](sequelizedMobile.png)
