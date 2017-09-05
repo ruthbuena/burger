@@ -3,7 +3,7 @@ var express = require("express");
 // Create the router for the App
 var router = express.Router();
 
-var models=require("../models");
+var models = require("../models");
 
 var sequelizeConnection = models.sequelize;
 
@@ -16,11 +16,11 @@ router.get("/", function(req,res){
 
 router.get('/index', function (req, res) {
 
-  models.devoured.belongsToMany(models.devoured, {
-    as:'networks',
-    foreignKey:"burgerId",
-    through: models.burgers
-  });
+  // models.devoured.belongsToMany(models.devoured, {
+  //   as:'networks',
+  //   foreignKey:"burgerId",
+  //   through: models.burgers
+  // });
 
   models.burgers.findAll({
     include: [{model: models.devourer}]

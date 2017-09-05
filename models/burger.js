@@ -2,11 +2,18 @@
 
 module.exports = function(sequelize, DataTypes) {
 
-  var burgers = sequelize.define('burgers', {
+  var Burgers = sequelize.define('Burgers', {
     burger_name: DataTypes.STRING,
     devoured: DataTypes.BOOLEAN,
     devourerId: DataTypes.INTEGER
 });
 
-  return burgers;
+Burgers.associate = function(models){
+  Burgers.belongsTo(models.Devourer, {
+    foreignKey: {
+      allowNull: false
+    }
+  });
+};
+  return Burgers;
 };
