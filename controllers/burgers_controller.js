@@ -16,14 +16,8 @@ router.get("/", function(req,res){
 
 router.get('/index', function (req, res) {
 
-  // models.devoured.belongsToMany(models.devoured, {
-  //   as:'networks',
-  //   foreignKey:"burgerId",
-  //   through: models.burgers
-  // });
-
   models.burgers.findAll({
-    include: [{model: models.devourer}]
+    include: [{model: models.devourers}]
   }).then(function(data){
 
       var hbsObject = { burgers: data };
@@ -32,23 +26,23 @@ router.get('/index', function (req, res) {
   })
 });
 
-router.post("/burger/create", function(req,res){
+router.post("/burgers/create", function(req,res){
   models.burgers.create(
     {
       burger_name: req.body.burger_name,
-      devourer: false
+      devoured: false
     }
   ).then(function(){
     res.redirect("/index");
   });
 });
 
-router.post("/burger/update/:id", function (req,res){
+router.post("/burgers/update/:id", function (req,res){
   if(req.body.burgerEat == "" || req.body.burgerEat == null){
     req.body.burgerEat = "John Doe";
   }
 
-  models.devourer.create({
+  models.devourers.create({
     devourer_name: req.body.burgerEat,
     burgerId: req.params.id
   })
@@ -59,7 +53,7 @@ router.post("/burger/update/:id", function (req,res){
 
     .then(function(eatenBurger){
       eatenBurger.update({
-        devourer: true,
+        devoured: true,
       })
 
       .then(function(){
