@@ -2,14 +2,12 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Devourers = sequelize.define("Devourers", {
-      devourers_name: DataTypes.STRING,
-      burgerId: DataTypes.INTEGER
-    },{
-      classMethods: {
-        associate: function(models){
-      }
+      devourers: {
+        type: DataTypes.STRING,
+      allowNull: false
     }
-});
+    });
+
 
   return Devourers;
 };
