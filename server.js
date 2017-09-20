@@ -3,6 +3,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require ("method-override");
 
+var db = require("./models");
+
 var app = express();
 
 
@@ -24,9 +26,11 @@ app.set("view engine", "handlebars");
 var router = require("./controllers/burgers_controller.js");
 
 app.use("/", router);
+app.use("/update", router);
+app.use("/create", router);
 
 // Per documentation the below command is needed when connecting using Heroku
-var PORT = process.env.PORT || 3000;
-app.listen(PORT, function(){
-  console.log("We are listening on PORT: ", PORT);
+var port = process.env.PORT || 3000;
+db.sequelize.sync().then(function(){
+app.listen(port);
 });

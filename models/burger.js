@@ -2,17 +2,17 @@
 
 module.exports = function(sequelize, DataTypes) {
 
-  var burgers = sequelize.define('burgers', {
+  var Burger = sequelize.define("Burger", {
     burger_name: DataTypes.STRING,
     devoured: DataTypes.BOOLEAN,
     devourersId: DataTypes.INTEGER
 },{
   classMethods: {
     associate: function(models){
-      burgers.belongsTo(models.devourers)
+      Burger.hasOne(models.Devourers);
     }
   }
 });
 
-  return burgers;
+  return Burger;
 };
